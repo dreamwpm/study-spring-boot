@@ -4,12 +4,13 @@ import com.study.service.SysUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Controller
 @RequestMapping(value = "/user")
 public class SysUserController {
     private final Logger log= LoggerFactory.getLogger(this.getClass());
@@ -32,6 +33,15 @@ public class SysUserController {
         log.error("======error");
         return "123";
     }
+
+    @RequestMapping("/index")
+    public String index(ModelMap map) {
+        // 加入一个属性，用来在模板中读取
+        map.addAttribute("host", "http://blog.didispace.com");
+        // return模板文件的名称，对应src/main/resources/templates/index.html
+        return "index";
+    }
+
 
 
 
