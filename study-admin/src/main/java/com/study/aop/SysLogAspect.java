@@ -1,20 +1,17 @@
 package com.study.aop;
 
 import com.alibaba.fastjson.JSON;
-import com.platform.annotation.SysLog;
-import com.platform.entity.SysLogEntity;
-import com.platform.entity.SysUserEntity;
-import com.platform.service.SysLogService;
-import com.platform.utils.HttpContextUtils;
-import com.platform.utils.IPUtils;
-import com.platform.utils.ShiroUtils;
 import com.study.common.annotation.SysLog;
+import com.study.common.model.SysLogEntity;
+import com.study.common.utils.HttpContextUtils;
+import com.study.common.utils.IPUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +26,7 @@ import java.util.Date;
 @Aspect
 @Component
 public class SysLogAspect {
+    private final Logger log= LoggerFactory.getLogger(this.getClass());
    /* @Autowired
     private SysLogService sysLogService;*/
 
@@ -65,19 +63,20 @@ public class SysLogAspect {
         sysLog.setIp(IPUtils.getIpAddr(request));
 
         //用户名
-        SysUserEntity sysUserEntity = ShiroUtils.getUserEntity();
+        //SysUserEntity sysUserEntity = ShiroUtils.getUserEntity();
         String username = "";
         if ("login".equals(methodName)) {
             username = params;
         }
-        if (null != sysUserEntity) {
+       /* if (null != sysUserEntity) {
             username = ShiroUtils.getUserEntity().getUsername();
-        }
+        }*/
         sysLog.setUsername(username);
 
         sysLog.setCreateDate(new Date());
         //保存系统日志
-        sysLogService.save(sysLog);
+        //sysLogService.save(sysLog);
+        log.info("待入库---保存系统日志");
     }
 
 }

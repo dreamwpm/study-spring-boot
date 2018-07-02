@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.study.model.User">
+    <id column="USERID" jdbcType="DECIMAL" property="userid" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="CREATE_TIME" jdbcType="DATE" property="createTime" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="E_MAIL" jdbcType="VARCHAR" property="eMail" />
+    <result column="IF_VALID" jdbcType="DECIMAL" property="ifValid" />
+    <result column="LAST_UPDATE_TIME" jdbcType="DATE" property="lastUpdateTime" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="PHONENUMBER" jdbcType="VARCHAR" property="phonenumber" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="ROLE_ID" jdbcType="DECIMAL" property="roleId" />
+    <result column="USER_ORDER" jdbcType="DECIMAL" property="userOrder" />
+    <result column="HEAD_IMG_URL" jdbcType="VARCHAR" property="headImgUrl" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    USERID, ACCOUNT, CREATE_TIME, DESCRIPTION, E_MAIL, IF_VALID, LAST_UPDATE_TIME, PASSWORD, 
+    PHONENUMBER, USER_NAME, ROLE_ID, USER_ORDER, HEAD_IMG_URL
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from T_USER
+    where USERID = #{userid,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAllUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from T_USER
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from T_USER
+    where USERID = #{userid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.study.model.User">
+    insert into T_USER (USERID, ACCOUNT, CREATE_TIME, 
+      DESCRIPTION, E_MAIL, IF_VALID, 
+      LAST_UPDATE_TIME, PASSWORD, PHONENUMBER, 
+      USER_NAME, ROLE_ID, USER_ORDER, 
+      HEAD_IMG_URL)
+    values (#{userid,jdbcType=DECIMAL}, #{account,jdbcType=VARCHAR}, #{createTime,jdbcType=DATE}, 
+      #{description,jdbcType=VARCHAR}, #{eMail,jdbcType=VARCHAR}, #{ifValid,jdbcType=DECIMAL}, 
+      #{lastUpdateTime,jdbcType=DATE}, #{password,jdbcType=VARCHAR}, #{phonenumber,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{roleId,jdbcType=DECIMAL}, #{userOrder,jdbcType=DECIMAL}, 
+      #{headImgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.study.model.User">
+    insert into T_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        USERID,
+      </if>
+      <if test="account != null">
+        ACCOUNT,
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME,
+      </if>
+      <if test="description != null">
+        DESCRIPTION,
+      </if>
+      <if test="eMail != null">
+        E_MAIL,
+      </if>
+      <if test="ifValid != null">
+        IF_VALID,
+      </if>
+      <if test="lastUpdateTime != null">
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="phonenumber != null">
+        PHONENUMBER,
+      </if>
+      <if test="userName != null">
+        USER_NAME,
+      </if>
+      <if test="roleId != null">
+        ROLE_ID,
+      </if>
+      <if test="userOrder != null">
+        USER_ORDER,
+      </if>
+      <if test="headImgUrl != null">
+        HEAD_IMG_URL,
+      </if>
+
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=DECIMAL},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="eMail != null">
+        #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        #{ifValid,jdbcType=DECIMAL},
+      </if>
+      <if test="lastUpdateTime != null">
+        #{lastUpdateTime,jdbcType=DATE},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="userOrder != null">
+        #{userOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="headImgUrl != null">
+        #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.study.model.User">
+    update T_USER
+    <set>
+      <if test="account != null">
+        ACCOUNT = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        CREATE_TIME = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="description != null">
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="eMail != null">
+        E_MAIL = #{eMail,jdbcType=VARCHAR},
+      </if>
+      <if test="ifValid != null">
+        IF_VALID = #{ifValid,jdbcType=DECIMAL},
+      </if>
+      <if test="lastUpdateTime != null">
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=DATE},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phonenumber != null">
+        PHONENUMBER = #{phonenumber,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        ROLE_ID = #{roleId,jdbcType=DECIMAL},
+      </if>
+      <if test="userOrder != null">
+        USER_ORDER = #{userOrder,jdbcType=DECIMAL},
+      </if>
+      <if test="headImgUrl != null">
+        HEAD_IMG_URL = #{headImgUrl,jdbcType=VARCHAR},
+      </if>
+
+    </set>
+    where USERID = #{userid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.study.model.User">
+    update T_USER
+    set ACCOUNT = #{account,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=DATE},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      E_MAIL = #{eMail,jdbcType=VARCHAR},
+      IF_VALID = #{ifValid,jdbcType=DECIMAL},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=DATE},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      PHONENUMBER = #{phonenumber,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      ROLE_ID = #{roleId,jdbcType=DECIMAL},
+      USER_ORDER = #{userOrder,jdbcType=DECIMAL},
+      HEAD_IMG_URL = #{headImgUrl,jdbcType=VARCHAR}
+    where USERID = #{userid,jdbcType=DECIMAL}
+  </update>
+
+</mapper>

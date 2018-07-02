@@ -1,6 +1,8 @@
 package com.study.controller;
 
+import com.study.common.annotation.SysLog;
 import com.study.service.SysUserService;
+import com.study.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,10 +19,21 @@ public class SysUserController {
     @Autowired
     private SysUserService sysUserService;
 
+    @Autowired
+    private UserService userService;
+
+    @SysLog("获取mysql用户列表")
     @ResponseBody
     @RequestMapping(value = "/all/{pageNum}/{pageSize}", produces = {"application/json;charset=UTF-8"})
     public Object findAllUser(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
         return sysUserService.findAllUser(pageNum,pageSize);
+    }
+
+    @SysLog("获取oracle用户列表")
+    @ResponseBody
+    @RequestMapping(value = "/all-oracle/{pageNum}/{pageSize}", produces = {"application/json;charset=UTF-8"})
+    public Object findAllOracleUser(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize){
+        return userService.findAllUser(pageNum,pageSize);
     }
 
     @ResponseBody
