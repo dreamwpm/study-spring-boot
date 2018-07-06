@@ -31,6 +31,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional><!--表示该依赖只影响当前-->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
@@ -89,6 +94,11 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.30</version>
+        </dependency>
+        <dependency>
+            <groupId>com.study</groupId>
+            <artifactId>study-common</artifactId>
+            <version>0.0.1</version>
         </dependency>
     </dependencies>
 

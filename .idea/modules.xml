@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/study-admin/study-admin.iml" filepath="$PROJECT_DIR$/study-admin/study-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/study-common/study-common.iml" filepath="$PROJECT_DIR$/study-common/study-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/study-shiro/study-shiro.iml" filepath="$PROJECT_DIR$/study-shiro/study-shiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/study-spring-boot.iml" filepath="$PROJECT_DIR$/study-spring-boot.iml" />
     </modules>
   </component>
