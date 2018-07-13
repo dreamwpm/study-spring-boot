@@ -1,6 +1,6 @@
 package com.study.controller;
 
-import com.study.common.annotation.SysLog;
+import com.study.annotation.SysLog;
 import com.study.service.SysUserService;
 import com.study.service.UserService;
 import org.slf4j.Logger;

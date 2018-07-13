@@ -1,10 +1,9 @@
 package com.study.aop;
 
-import com.alibaba.fastjson.JSON;
-import com.study.common.annotation.SysLog;
-import com.study.common.model.SysLogEntity;
-import com.study.common.utils.HttpContextUtils;
-import com.study.common.utils.IPUtils;
+import com.study.annotation.SysLog;
+import com.study.entity.SysLogEntity;
+import com.study.utils.HttpContextUtils;
+import com.study.utils.IPUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -30,7 +29,7 @@ public class SysLogAspect {
    /* @Autowired
     private SysLogService sysLogService;*/
 
-    @Pointcut("@annotation(com.study.common.annotation.SysLog)")
+    @Pointcut("@annotation(com.study.annotation.SysLog)")
     public void logPointCut() {
 
     }
@@ -53,9 +52,9 @@ public class SysLogAspect {
         sysLog.setMethod(className + "." + methodName + "()");
 
         //请求的参数
-        Object[] args = joinPoint.getArgs();
-        String params = JSON.toJSONString(args[0]);
-        sysLog.setParams(params);
+       // Object[] args = joinPoint.getArgs();
+       // String params = JSON.toJSONString(args[0]);
+       // sysLog.setParams(params);
 
         //获取request
         HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
@@ -66,7 +65,7 @@ public class SysLogAspect {
         //SysUserEntity sysUserEntity = ShiroUtils.getUserEntity();
         String username = "";
         if ("login".equals(methodName)) {
-            username = params;
+           // username = params;
         }
        /* if (null != sysUserEntity) {
             username = ShiroUtils.getUserEntity().getUsername();
